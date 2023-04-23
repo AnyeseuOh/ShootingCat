@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public AudioSource sfx;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            sfx.Play();
+        }
+    }
 
     public void Resume()
     {
@@ -25,5 +34,10 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
         Resume();
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

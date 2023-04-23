@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     CatController catController;
     
     public Text scoreText;
+    public Text hpText;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = string.Format("SCORE : {0:D5}", catController.score.ToString());
-        
+        scoreText.text = "SCORE : " + catController.score.ToString("00000");
+        hpText.text = " :  "+ catController.catHp.ToString("00");
     }
 }

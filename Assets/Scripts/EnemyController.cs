@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     public CatController catController;
     public GameObject slimePrefab;
     public Animator anim;
+    public AudioSource damageSfx;
 
     public int enemyHp;
     public int score;
@@ -51,7 +52,6 @@ public class EnemyController : MonoBehaviour
 
             case ENEMYSTATE.ATTACK:
                 anim.SetInteger("EnemyState", (int)enemyState);
-
                 enemyState = ENEMYSTATE.IDLE;
                 break;
 
@@ -69,7 +69,6 @@ public class EnemyController : MonoBehaviour
                 anim.SetInteger("EnemyState", (int)enemyState);
                 GetComponent<BoxCollider2D>().isTrigger = true;
                 GetComponent<Rigidbody2D>().isKinematic = true;
-
                 anim.SetTrigger("Dead");
                 break;
         }
@@ -80,6 +79,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            damageSfx.Play();
             catController.catHp--;
             Debug.Log("Cat°ú ºÎµúÈû");
             enemyState = ENEMYSTATE.ATTACK;

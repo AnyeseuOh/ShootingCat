@@ -16,6 +16,8 @@ public class CatController : MonoBehaviour
     public STATE catState;
     public GameManager gameManager;
     public GameObject gameoverPanel;
+    public AudioSource shootingSfx;
+    public AudioSource jumpingSfx;
 
     public Animator anim;
     public float moveSpeed = 2f;
@@ -55,6 +57,7 @@ public class CatController : MonoBehaviour
         {
             catState = STATE.ATTACK;
 
+            shootingSfx.Play();
             GameObject effect;
             if (gameObject.GetComponent<SpriteRenderer>().flipX == true)
             {
@@ -103,6 +106,7 @@ public class CatController : MonoBehaviour
                 break;
             case STATE.JUMP:
                 anim.SetInteger("State", 1);
+                jumpingSfx.Play();
                 rigid.velocity = new Vector2(0, 5f);
 
                 catState = STATE.IDLE;
